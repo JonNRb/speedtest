@@ -12,12 +12,16 @@ import (
 
 const (
 	concurrentUploadLimit = concurrentDownloadLimit
-	uploadRepeats         = downloadRepeats * 25
+	uploadRepeats         = downloadRepeats * 10
 
 	safeChars = "0123456789abcdefghijklmnopqrstuv"
 )
 
-var uploadSizes = []int{1000 * 1000 / 4, 1000 * 1000 / 2}
+var uploadSizes = []int{
+	250_000,
+	500_000,
+	10_000_000,
+}
 
 // Will probe upload speed until enough samples are taken or ctx expires.
 func (s Server) ProbeUploadSpeed(
